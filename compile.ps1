@@ -16,7 +16,7 @@ FUNCTION BUILD($CONFIG) {
 
 			$ENV:GOOS = $OS
 			$ENV:GOARCH = $ARCH
-			go build -gcflags=all="-l -B" -ldflags="-s -w" -trimpath -o="bin/$FILENAME"
+			go build -gcflags=all="-B" -ldflags="-s -w" -trimpath -o="bin/$FILENAME"
 
 			WRITE-HOST "DONE"
 		}
