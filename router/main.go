@@ -4,6 +4,9 @@ import (
 	_ "embed"
 	os "os"
 	fmt "fmt"
+	strings "strings"
+)
+import (
 	fiber "github.com/gofiber/fiber/v2"
 )
 
@@ -51,14 +54,16 @@ func Route(router fiber.Router) {
 	})
 
 	router.Get("/list", func(c *fiber.Ctx) error {
-		result := ""
-		for _, files := range mods {
-			result += fmt.Sprintf(
-				"<a href=\"/download/%s\" class=\"list-group-item list-group-item-dark\" download>%s</a>",
-				files, files,
-			)
+		var builder strings.Builder
+
+		for _, file := range mods {
+			builder.WriteString("<a href=\"/download/")
+			builder.WriteString(file)
+			builder.WriteString("\" class=\"list-group-item list-group-item-dark\" download>")
+			builder.WriteString(file)
+			builder.WriteString("</a>")
 		}
 
-		return c.SendString(result)
+		return c.SendString(builder.String())
 	})
 }
