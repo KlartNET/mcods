@@ -3,6 +3,8 @@ package main
 import (
 	_ "embed"
 	fmt "fmt"
+)
+import (
 	fiber "github.com/gofiber/fiber/v2"
 )
 
@@ -33,5 +35,5 @@ func main() {
 	app.Route("", router.Route)
 
 	fmt.Printf("MCods is running on http://%s\n", hostname)
-	app.Listen(fmt.Sprintf(hostname))
+	app.Listen(hostname)
 }
